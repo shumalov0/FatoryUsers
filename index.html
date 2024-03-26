@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotory</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    <div class="bg-whiteColor">
+        <div class="container mx-auto flex mt-1 px-6">
+            <div
+                class="Nav flex fixed left-0 z-50 right-0 justify-between items-center max-w-[1200px] h-[60px] mx-5 lg:mx-auto px-10 shadow">
+                <div class="logo">
+                    <a href="/">
+                        <img src="./assets/Icons/Layer_1.svg" alt="asas">
+                    </a>
+                </div>
+                <div class="menuBar h-4 w-9 cursor-pointer" id="menuBar">
+                    <div class="menuBarLine"></div>
+                    <div class="menuBarLine"></div>
+                </div>
+            </div>
+            <div style="border-radius: 16px;
+                background: rgba(216, 216, 216, 0.5);
+                backdrop-filter: blur(20px); transition: top 0.5s ease "
+                class="responsive fixed left-0 right-0 mx-5 lg:mx-auto max-w-[1200px] flex items-center justify-center py-5"
+                id="responsiveMenu">
+                <ul class="flex flex-col items-center gap-6 lg:gap-[28px] font-pop font-normal mt-12" id="menuItems">
+                    <li>
+                        <a href="https://wa.me/994553091509">Paylaş</a>
+                    </li>
+                    <li>
+                        <a href="#1">Əlaqə</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="Parent">
+
+        <section class="  bg-[#F0F0F0] flex items-center justify-center px-[20px] md:px-[60px]  ">
+            <div class="container mx-auto ">
+                <div
+                    class="div flex flex-col md:flex-row items-center md:items-start max-w-[1096px] w-full justify-between pb-5  gap-4">
+                    <div
+                        class="left max-w-[200px]  md:max-w-[400px] w-full  max-h-[200px] md:max-h-[400px]  flex items-center justify-center pt-12 md:pt-0">
+                        <img src="./assets/Img/users.png" alt="user"  class="w-full object-cover">
+                    </div>
+                    <div class="right max-w-[624px] w-full flex items-start py-4 justify-between  px-5">
+                        <div class="right-text ">
+                            <h1 class="font-bold text-[22px]  md:text-[32px] text-black">Ad Soyad</h1>
+                            <p class="  font-medium text-[20px] text-black">Qərbi Kaspi Universiteti</p>
+                            <p class="  italic  text-[16px]">2022-2026</p>
+                            <p class="font-bold text-[20px] text-black">232IT</p>
+                        </div>
+
+                        <div class="shareButton cursor-pointer ">
+                            <img src="./assets/Icons/Vector.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="scrollBottom flex flex-col items-center justify-center w-full py-8   "
+                    style="border-top: 1px solid #2a2a2a;">
+                    <p>qaleraya üçün aşağı sürüşdür</p>
+                    <img src="./assets/Icons/bottomsvg.svg" alt="bottomIcon">
+                </div>
+
+            </div>
+        </section>
+        <section class=" bg-[#F0F0F0]">
+            <div class="container mx-auto">
+                <div class="ImgList pt-[80px] px-9 flex items-center flex-wrap gap-7 justify-center ">
+                    <div class="imgBox">
+                        <img src="./assets/Img/users.png" alt="Qiyas " class="max-w-[120px]">
+                    </div>
+                    <div class="imgBox">
+                        <img src="./assets/Img/img6.png" alt="Qiyas " class="max-w-[120px]">
+                    </div>
+                    <div class="imgBox">
+                        <img src="./assets/Img/img1.png" alt="Qiyas " class="max-w-[120px]">
+                    </div>
+                    <div class="imgBox">
+                        <img src="./assets/Img/img2.png" alt="Qiyas " class="max-w-[120px]">
+                    </div>
+                    <div class="imgBox">
+                        <img src="./assets/Img/img3.png" alt="Qiyas " class="max-w-[120px]">
+                    </div>
+                    <div class="imgBox">
+                        <img src="./assets/Img/img4.png" alt="Qiyas " class="max-w-[120px]">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <footer id="footer" class="bg-[#2A2A2A] h-[65px] fixed bottom-0 left-0 right-0 ">
+
+        <div class="container mx-auto h-full w-full flex items-center justify-center">
+            <img src="./assets/Icons/Layer_2.svg" alt="LogoFooter" class="logo">
+        </div>
+
+    </footer>
+    <div class="popup">
+        <div class="popup-content py-5 px-7">
+            <div class="contentTop flex items-end  justify-between py-5 border-b-2 border-[#2a2a2a]">
+                <span class="text-[19px]  text-black font-medium">Paylaş</span>
+                <span class="closeButton">
+                    <img src="./assets/Icons/popupclose.svg" alt="Popupclose">
+                </span>
+            </div>
+            <div class="contentBottom flex items-center max-w-[280px]  ">
+                <input type="text" class="urlInput outline-none bg-[#F0F0F0] " readonly>
+                <button class="copyButton">Kopyala</button>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="overlay">
+        <span class="prev" onclick="prevImage()">&#10094;</span>
+        <img id="imgOverlay" src="" alt="" class=" max-w-[200px] md:max-w-[400px] w-full object-cover ">
+        <span class="next" onclick="nextImage()">&#10095;</span>
+    </div>
+    <script src="./javascript/script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+.repsonsive {
+  border-radius: 16px;
+  background: rgba(216, 216, 216, 0.5);
+  backdrop-filter: blur(20px);
+}
+.Nav {
+  border-radius: 16px;
+  background: rgba(216, 216, 216, 0.5);
+  backdrop-filter: blur(20px);
+}
+
+
+.menuBarLine {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 5px 0;
+  transition: transform 0.3s ease;
+}
+
+.menuBar.active .menuBarLine:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menuBar.active .menuBarLine:nth-child(2) {
+  transform: translateX(0px) rotate(-45deg);
+  opacity: 1;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+}
+
+.Parent {
+  height: 100vh !important;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  margin: 15% auto;
+  width:300px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--Brand-Light, #f0f0f0);
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.urlInput {
+  width: calc(100% - 100px);
+}
+.contentBottom {
+  border-radius: 8px;
+  border: 1px solid var(--Grayscale-gray-300, #686868);
+  padding: 5px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.copyButton {
+  display: flex;
+  padding: 10px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: var(--Brand-Dark, #2a2a2a);
+  color: var(--Grayscale-white, #fff);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 16px */
+}
+
+.ImgList {
+  height: 85vh;
+  overflow-y: auto;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .overlay img {
+  max-width: 400px;
+  width: 100%;
+  object-fit: cover;
+} */
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 24px;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
