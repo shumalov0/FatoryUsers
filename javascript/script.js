@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function toggleMenu() {
     menuOpen = !menuOpen;
-    responsiveMenu.style.top = menuOpen ? "5px" : "-500px";
+    responsiveMenu.style.top = menuOpen ? "78px" : "-500px";
     menuBar.classList.toggle("active");
   }
 
@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
     popup.style.display = "none";
   }
 
-  document.addEventListener("click", function (event) {
-    if (popup.contains(event.target)) {
-      popup.style.display = "none";
-    }
-  });
+  // document.addEventListener("click", function (event) {
+  //   if (popup.contains(event.target)) {
+  //     popup.style.display = "none";
+  //   }
+  // });
 
   function copyUrl() {
     urlInput.select();
