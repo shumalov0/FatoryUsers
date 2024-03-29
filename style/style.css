@@ -74,7 +74,7 @@ section {
 }
 
 .urlInput {
-  width: calc(100% - 100px);
+  width: calc(100% - 80px);
 }
 .contentBottom {
   border-radius: 8px;
@@ -107,6 +107,11 @@ section {
 .ImgList {
    max-height: 89vh;
   overflow-y: auto;
+}
+
+.imgBox img{
+
+  height: 100vh;
 }
 
 .overlay {
