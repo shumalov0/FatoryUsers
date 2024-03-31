@@ -3,6 +3,7 @@
   background: rgba(216, 216, 216, 0.5);
   backdrop-filter: blur(20px);
 }
+
 .Nav {
   border-radius: 16px;
   background: rgba(216, 216, 216, 0.5);
@@ -46,7 +47,10 @@ section {
   scroll-snap-align: start;
 }
 
-.popup {
+.popups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   display: none;
   position: fixed;
   z-index: 9999;
@@ -55,15 +59,19 @@ section {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
-.popup-content {
+.popup-contents {
   margin: 15% auto;
-  width:300px;
+  max-width: 400px;
   padding: 16px;
   border-radius: 8px;
   background: var(--Brand-Light, #f0f0f0);
+}
+
+.popup-content img,video{
+  width: 100%;
 }
 
 .closeButton:hover,
@@ -110,8 +118,15 @@ section {
 }
 
 .imgBox img{
-
+  border-radius: 16px;
   height: 100vh;
+
+}
+
+.videoBox video{
+  border-radius: 16px;
+  height: 100vh;
+
 }
 
 .overlay {
@@ -127,14 +142,58 @@ section {
   align-items: center;
 }
 
+
+
+
 /* .overlay img {
   max-width: 400px;
   width: 100%;
   object-fit: cover;
 } */
 
-.prev,
-.next {
+
+
+
+/* Popup Genel Stili */
+.popup {
+
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+}
+
+.popup-content {
+  position: relative;
+  padding: 20px;
+  background:transparent;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  max-width: 500px;
+
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+
+.prevButton, .nextButton {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -142,13 +201,65 @@ section {
   color: white;
   font-size: 24px;
   padding: 16px;
-  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.prev {
+.prevButton {
+  left: 10px;
+}
+
+.nextButton {
+  right: 10px;
+}
+
+/* Video Overlay Stilleri */
+.video-overlay {
+  position: fixed;
+  top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1050;
 }
 
-.next {
-  right: 0;
+.video-content {
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.close-video {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+}
+
+
+
+@media screen and (max-width:425px) {
+  .popup-content {
+    position: relative;
+    padding: 20px;
+    background:transparent;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    max-width: 300px;
+  
+  }
 }
