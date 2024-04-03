@@ -10,37 +10,86 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeButtonMedia = mediaPopup.querySelector(".closeButton");
   const popupContent = mediaPopup.querySelector(".popup-content");
   const mediaBoxes = document.querySelectorAll(".imgBox, .videoBox");
+  const scrollBottom = document.querySelector(".scrollBottom"); 
+  const secondSection = document.getElementById("1");
 
-  let currentIndex = 0; 
+  let touchStartX = 0;
+  let touchEndX = 0;
 
+  let currentIndex = 0;
 
-const prevButton = document.createElement("button");
-const nextButton = document.createElement("button");
+  const prevButton = document.createElement("button");
+  const nextButton = document.createElement("button");
 
+  document.addEventListener(
+    "touchstart",
+    function (e) {
+      touchStartX = e.touches[0].clientX;
+    },
+    false
+  );
 
-prevButton.innerHTML = '<i class="fas fa-arrow-left"></i>';
-nextButton.innerHTML = '<i class="fas fa-arrow-right"></i>';
+  document.addEventListener(
+    "touchend",
+    function (e) {
+      touchEndX = e.changedTouches[0].clientX;
+      handleSwipeGesture();
+    },
+    false
+  );
 
+  function handleSwipeGesture() {
+    if (touchStartX - touchEndX > 50) {
+      showNext();
+    }
+    if (touchStartX - touchEndX < -50) {
+      showPrev();
+    }
+  }
 
-prevButton.classList.add("prevButton", "buttonStyle");
-nextButton.classList.add("nextButton", "buttonStyle");
+  prevButton.innerHTML = '<i class="fas fa-arrow-left"></i>';
+  nextButton.innerHTML = '<i class="fas fa-arrow-right"></i>';
 
-mediaPopup.appendChild(prevButton);
-mediaPopup.appendChild(nextButton);
+  prevButton.classList.add("prevButton", "buttonStyle");
+  nextButton.classList.add("nextButton", "buttonStyle");
 
-  
-  responsiveMenu.style.top = "-500px";
+  mediaPopup.appendChild(prevButton);
+  mediaPopup.appendChild(nextButton);
+
+  responsiveMenu.style.top = "23px";
 
   function toggleMenu() {
     const isOpen = responsiveMenu.style.top === "78px";
-    responsiveMenu.style.top = isOpen ? "-500px" : "78px";
+
+    if (isOpen) {
+      // Menüyü kapat
+      responsiveMenu.style.top = "23px";
+      setTimeout(() => {
+        responsiveMenu.style.visibility = "hidden";
+      }, 320);
+    } else {
+      responsiveMenu.style.visibility = "visible";
+      responsiveMenu.style.top = "78px";
+    }
     menuBar.classList.toggle("active");
   }
 
   menuBar.addEventListener("click", toggleMenu);
 
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowLeft") {
+      showPrev();
+    } else if (event.key === "ArrowRight") {
+      showNext();
+    }
+  });
+
   document.addEventListener("click", function (event) {
-    if (!menuBar.contains(event.target) && !responsiveMenu.contains(event.target) && menuBar.classList.contains("active")) {
+    if (
+      !menuBar.contains(event.target) &&
+      !responsiveMenu.contains(event.target) &&
+      menuBar.classList.contains("active")
+    ) {
       toggleMenu();
     }
   });
@@ -67,8 +116,12 @@ mediaPopup.appendChild(nextButton);
     box.addEventListener("click", function () {
       currentIndex = index;
       const isVideo = this.classList.contains("videoBox");
-      const source = isVideo ? this.querySelector("video source").src : this.querySelector("img").src;
-      const contentHtml = isVideo ? `<video controls><source src="${source}" type="video/mp4"></video>` : `<img src="${source}" alt="Media">`;
+      const source = isVideo
+        ? this.querySelector("video source").src
+        : this.querySelector("img").src;
+      const contentHtml = isVideo
+        ? `<video class=" rounded-[16px]" controls><source src="${source}" type="video/mp4"></video>`
+        : `<img src="${source}" alt="Media">`;
       popupContent.innerHTML = contentHtml;
       mediaPopup.style.display = "flex";
     });
@@ -78,6 +131,10 @@ mediaPopup.appendChild(nextButton);
     currentIndex = (currentIndex - 1 + mediaBoxes.length) % mediaBoxes.length;
     mediaBoxes[currentIndex].click();
   }
+
+  scrollBottom.addEventListener('click', function () {
+    secondSection.scrollIntoView({ behavior: 'smooth' });
+  });
 
   function showNext() {
     currentIndex = (currentIndex + 1) % mediaBoxes.length;
@@ -90,7 +147,13 @@ mediaPopup.appendChild(nextButton);
   window.addEventListener("click", function (event) {
     if (event.target === mediaPopup) {
       mediaPopup.style.display = "none";
-    } 
+    } else if (
+      event.target === sharePopup ||
+      event.target.classList.contains("dark-background")
+    ) {
+  
+      sharePopup.style.display = "none";
+    }
   });
 
   closeButtonMedia.addEventListener("click", function (event) {
