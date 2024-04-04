@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let touchEndX = 0;
 
   let currentIndex = 0;
-  let isSwipeActive = false; // Kaydırma işlevselliğini kontrol eden bayrak
+  let isSwipeActive = false; 
 
   const prevButton = document.createElement("button");
   const nextButton = document.createElement("button");
 
   function handleSwipeGesture() {
-    if (!isSwipeActive) return; // Kaydırma işlevselliği aktif değilse fonksiyonu bitir
+    if (!isSwipeActive) return; 
 
     if (touchStartX - touchEndX > 50) {
       showNext();
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
   mediaBoxes.forEach((box, index) => {
     box.addEventListener("click", function () {
       currentIndex = index;
-      isSwipeActive = true; // Medya öğesine tıklandığında kaydırma işlevselliğini etkinleştir
+      isSwipeActive = true; 
       const isVideo = this.classList.contains("videoBox");
       const source = isVideo
         ? this.querySelector("video source").src
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("click", function (event) {
     if (event.target === mediaPopup) {
       mediaPopup.style.display = "none";
-      isSwipeActive = false; // Medya popup'ı karanlık arka plana tıklayarak kapatıldığında kaydırma işlevselliğini devre dışı bırak
+      isSwipeActive = false; 
     } else if (
       event.target === sharePopup ||
       event.target.classList.contains("dark-background")
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
   closeButtonMedia.addEventListener("click", function (event) {
     event.stopPropagation();
     mediaPopup.style.display = "none";
-    isSwipeActive = false; // Medya popup'ı kapandığında kaydırma işlevselliğini devre dışı bırak
+    isSwipeActive = false; 
   });
   
 
