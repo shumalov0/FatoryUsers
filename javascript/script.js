@@ -17,32 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
   let touchEndX = 0;
 
   let currentIndex = 0;
+  let isSwipeActive = false; // Kaydırma işlevselliğini kontrol eden bayrak
 
   const prevButton = document.createElement("button");
   const nextButton = document.createElement("button");
 
-  document.addEventListener(
-    "touchstart",
-    function (e) {
-      touchStartX = e.touches[0].clientX;
-    },
-    false
-  );
-
-  document.addEventListener(
-    "touchend",
-    function (e) {
-      touchEndX = e.changedTouches[0].clientX;
-      handleSwipeGesture();
-    },
-    false
-  );
-
   function handleSwipeGesture() {
+    if (!isSwipeActive) return; // Kaydırma işlevselliği aktif değilse fonksiyonu bitir
+
     if (touchStartX - touchEndX > 50) {
       showNext();
-    }
-    if (touchStartX - touchEndX < -50) {
+    } else if (touchStartX - touchEndX < -50) {
       showPrev();
     }
   }
@@ -115,17 +100,53 @@ document.addEventListener("DOMContentLoaded", function () {
   mediaBoxes.forEach((box, index) => {
     box.addEventListener("click", function () {
       currentIndex = index;
+      isSwipeActive = true; // Medya öğesine tıklandığında kaydırma işlevselliğini etkinleştir
       const isVideo = this.classList.contains("videoBox");
       const source = isVideo
         ? this.querySelector("video source").src
         : this.querySelector("img").src;
       const contentHtml = isVideo
-        ? `<video class=" rounded-[16px]" controls><source src="${source}" type="video/mp4"></video>`
+        ? `<video class="rounded-[16px]" controls><source src="${source}" type="video/mp4"></video>`
         : `<img src="${source}" alt="Media">`;
       popupContent.innerHTML = contentHtml;
       mediaPopup.style.display = "flex";
     });
   });
+
+  // closeButtonMedia.addEventListener("click", function () {
+  //   isSwipeActive = false; // Medya popup'ı kapandığında kaydırma işlevselliğini devre dışı bırak
+  //   mediaPopup.style.display = "none";
+  // });
+
+  window.addEventListener("click", function (event) {
+    if (event.target === mediaPopup) {
+      mediaPopup.style.display = "none";
+      isSwipeActive = false; // Medya popup'ı karanlık arka plana tıklayarak kapatıldığında kaydırma işlevselliğini devre dışı bırak
+    } else if (
+      event.target === sharePopup ||
+      event.target.classList.contains("dark-background")
+    ) {
+      sharePopup.style.display = "none";
+    }
+  });
+  
+  closeButtonMedia.addEventListener("click", function (event) {
+    event.stopPropagation();
+    mediaPopup.style.display = "none";
+    isSwipeActive = false; // Medya popup'ı kapandığında kaydırma işlevselliğini devre dışı bırak
+  });
+  
+
+  document.addEventListener("touchstart", function (e) {
+    if (isSwipeActive) touchStartX = e.touches[0].clientX;
+  }, false);
+
+  document.addEventListener("touchend", function (e) {
+    if (isSwipeActive) {
+      touchEndX = e.changedTouches[0].clientX;
+      handleSwipeGesture();
+    }
+  }, false);
 
   function showPrev() {
     currentIndex = (currentIndex - 1 + mediaBoxes.length) % mediaBoxes.length;
